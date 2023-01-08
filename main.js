@@ -1,5 +1,8 @@
 import './style.scss'
 
+import gsap from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+
 import {
     ViewerApp,
     AssetManagerPlugin,
@@ -25,7 +28,9 @@ import {
     // Texture, // Import THREE.js internals
 } from "webgi";
 
-async function setupViewer(){
+gsap.registerPlugin(ScrollTrigger);
+
+async function setupViewer() {
 
     // Initialize the viewer
     const viewer = new ViewerApp({
@@ -85,6 +90,72 @@ async function setupViewer(){
     // const uiPlugin = await viewer.addPlugin(TweakpaneUiPlugin)
     // Add plugins to the UI to see their settings.
     // uiPlugin.setupPlugins(TonemapPlugin, CanvasSnipperPlugin)
+
+    // WEBGI UPDATE
+    let needsUpdate = true;
+
+    function updateCamera() {
+        needsUpdate = true;
+        // viewer.renderer.resetShadows()
+        viewer.setDirty()
+    }
+
+    viewer.addEventListener('preFrame', () =>{
+        if(needsUpdate){
+            camera.positionTargetUpdated(true)
+            needsUpdate = false
+        }
+    })
+
+    function setupScrollAnim() {
+        const tl = gsap.timeline();
+        tl.to(camPos, {
+            scrollTrigger: {
+                trigger: ".page-section__second",
+                scrub: true,
+                start: "top top",
+                end: "bottom top",
+                markers: true,
+            },
+            y: 2,
+            x: 2,
+            z: 2,
+            duration: 5,
+            ease: "power2.inOut",
+            onUpdate: updateCamera,
+        })
+            .to(camPos, {
+                scrollTrigger: {
+                    trigger: ".page-section__third",
+                    scrub: true,
+                    start: "top top",
+                    end: "bottom top",
+                    markers: true,
+                },
+                y: 4,
+                x: 4,
+                duration: 5,
+                ease: "power2.inOut",
+                onUpdate: updateCamera,
+            })
+            .to(camPos, {
+                scrollTrigger: {
+                    trigger: ".page-section__first",
+                    scrub: true,
+                    start: "top top",
+                    end: "bottom top",
+                    markers: true,
+                },
+                y: 0,
+                x: 0,
+                duration: 5,
+                ease: "power2.inOut",
+                onUpdate: updateCamera,
+            });
+
+    }
+
+    setupScrollAnim(camera, updateCamera);
 
     return viewer;
 }

@@ -13,8 +13,10 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
+    "@types/gsap": "^3.0.0",
     "@types/three": "^0.148.0",
     "@types/webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.5.8.tgz",
+    "gsap": "^3.11.4",
     "three": "^0.148.0",
     "webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.5.8.tgz"
   }
