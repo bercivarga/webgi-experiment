@@ -1,0 +1,176 @@
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: none;
+
+  --mobile-section-padding: 0 24px;
+  --desktop-section-padding: 0 256px;
+}
+
+//html {
+//    overflow: hidden;
+//    height: 100%;
+//}
+//
+//body {
+//    height: 100%;
+//    overflow: auto;
+//}
+
+// make heading styles
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+// make paragraph styles
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+footer {
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 2;
+
+  > * {
+    width: 100%;
+  }
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: var(--mobile-section-padding);
+
+  @media (min-width: 768px) {
+      padding: var(--desktop-section-padding);
+  }
+
+  > .company-name {
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0;
+  }
+
+  > .logo {
+    margin: 16px 0;
+    background: #1a1a1a;
+    color: white;
+    border-radius: 9999px;
+    //font-family: monospace;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > span {
+      width: 32px;
+      height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+  }
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.background-stripes {
+  position: absolute;
+  top: 85vh;
+  left: 0;
+  width: 100vw;
+  height: 40vh;
+  z-index: 0;
+
+  background-color: #1a1a1a;
+  transform: skew(0deg, 10deg);
+}
+
+.page-section {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--mobile-section-padding);
+  z-index: 2;
+
+  @media (min-width: 768px) {
+    padding: var(--desktop-section-padding);
+  }
+
+  > h2 {
+    margin: 0;
+  }
+
+  > .section-content-wrapper {
+    max-width: 300px;
+  }
+
+  &__first, &__third {
+    align-items: flex-start;
+  }
+
+  &__second {
+    align-items: flex-end;
+  }
+}
