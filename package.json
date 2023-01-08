@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@types/three": "^0.148.0",
-    "three": "^0.148.0"
+    "three": "^0.148.0",
+    "@types/webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.5.8.tgz",
+    "webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.5.8.tgz"
   }
 }
