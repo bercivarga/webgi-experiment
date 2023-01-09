@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
+
+  @media (min-width: 768px) {
+      font-size: 4.5rem;
+  }
 }
 
 h2 {
@@ -63,17 +67,17 @@ p {
 }
 
 footer {
-  background: #1a1a1a;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  padding: 1rem 0;
+  color: #2D1E2F;
+  text-align: left;
   position: relative;
   z-index: 2;
 
-  > * {
-    width: 100%;
+  > div {
+    padding: 0 24px;
+
+    @media (min-width: 768px) {
+      padding: 0 256px;
+    }
   }
 }
 
@@ -98,12 +102,13 @@ nav {
     font-weight: 700;
     line-height: 1.2;
     margin-top: 0;
+    color: #2D1E2F;
   }
 
   > .logo {
     margin: 16px 0;
-    background: #1a1a1a;
-    color: white;
+    background: #E3170A;
+    color: #FCF6B1;
     border-radius: 9999px;
     //font-family: monospace;
     font-size: 1.5rem;
@@ -117,9 +122,9 @@ nav {
     > span {
       width: 32px;
       height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
@@ -141,8 +146,14 @@ nav {
   height: 40vh;
   z-index: 0;
 
-  background-color: #1a1a1a;
+  background-color: #E3170A;
   transform: skew(0deg, 10deg);
+
+  &:nth-of-type(2) {
+    transform: skew(0deg, 10deg) translateY(20vh);
+    height: 20vh;
+    background-color: #F7B32B;
+  }
 }
 
 .page-section {
@@ -168,6 +179,22 @@ nav {
 
   &__first, &__third {
     align-items: flex-start;
+  }
+
+  &__third {
+    > .back-cover {
+      background-color: #2D1E2F;
+      z-index: -4;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: skew(0deg, 10deg);
+    }
+
+    color: white;
+    z-index: 1;
   }
 
   &__second {
