@@ -1,5 +1,3 @@
-import './style.scss'
-
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
@@ -29,6 +27,11 @@ import {
 } from "webgi";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const body = document.querySelector("body");
+const loader = document.querySelector(".loader");
+
+body.style.overflow = "hidden";
 
 async function setupViewer() {
 
@@ -76,7 +79,16 @@ async function setupViewer() {
     // This must be called once after all plugins are added.
     viewer.renderer.refreshPipeline()
 
-    await manager.addFromPath("chair-scene.glb")
+    const options = {
+        autoScale: true, // Scales the object before adding to the scene.
+        autoScaleRadius: 2, // Scales the object bounding box to 2 World Units, if autoScale is true
+        pseudoCenter: true, // centers the object to origin on load
+        // check docs for other options (if required)
+    }
+
+    await manager.addFromPath("chair-scene.glb", {
+        ...options,
+    })
 
     // Load an environment map if not set in the glb file
     // await viewer.scene.setEnvironment(
@@ -209,4 +221,16 @@ async function setupViewer() {
 
 setupViewer().then((viewer) => {
     viewer.scene.activeCamera.controls.enabled = false
+}).then(() => {
+    const tl = gsap.timeline();
+    // add animation to body opacity
+    tl.to('body', {
+        opacity: 1,
+        duration: 1,
+        overflow: "auto",
+    })
+    .to('.loader', {
+        opacity: 0,
+        duration: 1,
+    })
 });
