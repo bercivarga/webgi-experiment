@@ -105,11 +105,14 @@ async function setupViewer() {
     updateCamera();
 
     viewer.addEventListener('preFrame', () => {
-        if(needsUpdate){
+        if (needsUpdate) {
             camera.positionTargetUpdated(true);
             needsUpdate = false;
         }
     });
+
+    const firstStripe = document.querySelector('.first-stripe');
+    const secondStripe = document.querySelector('.second-stripe');
 
     (function setupScrollAnim() {
         const tl = gsap.timeline();
@@ -129,51 +132,75 @@ async function setupViewer() {
             duration: 2,
             onUpdate: updateCamera,
         })
-        .to(camera.target, {
-            scrollTrigger: {
-                trigger: ".page-section__second",
-                scrub: 1,
-                start: "top bottom",
-                end: "top top",
-                immediateRender: false,
-            },
-            x: 0.7684664935,
-            y: 0.3398988927,
-            z: -0.1319013202,
-            duration: 2,
-            // onUpdate: updateCamera,
-        })
+            .to(camera.target, {
+                scrollTrigger: {
+                    trigger: ".page-section__second",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "top top",
+                    immediateRender: false,
+                },
+                x: 0.7684664935,
+                y: 0.3398988927,
+                z: -0.1319013202,
+                duration: 2,
+                // onUpdate: updateCamera,
+            })
+            .to(firstStripe, {
+                scrollTrigger: {
+                    trigger: ".page-section__second",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "top top",
+                    immediateRender: false,
+                },
+                clipPath: 'inset(50% 0 25% 50%)',
+                duration: 2,
+                onUpdate: updateCamera,
+            })
+            .to(secondStripe, {
+                scrollTrigger: {
+                    trigger: ".page-section__second",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "top top",
+                    immediateRender: false,
+                },
+                clipPath: 'inset(0 60% 0 40%)',
+                duration: 2,
+                onUpdate: updateCamera,
+            })
 
-        // Third section
-        .to(camera.position, {
-            scrollTrigger: {
-                trigger: ".page-section__third",
-                scrub: 1,
-                start: "top bottom",
-                end: "top top",
-                immediateRender: false,
+            // Third section
+            .to(camera.position, {
+                scrollTrigger: {
+                    trigger: ".page-section__third",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "top top",
+                    immediateRender: false,
 
-            },
-            x: 0.14525348191734644,
-            y: 0.2546533080975514,
-            z: -5.041940141013417,
-            duration: 2,
-            onUpdate: updateCamera,
-        })
-        .to(camera.target, {
-            scrollTrigger: {
-                trigger: ".page-section__third",
-                scrub: 1,
-                start: "top bottom",
-                end: "top top",
-                immediateRender: false,
-            },
-            x: 0.8036156172,
-            y: 0.5979497955,
-            z: -0.1227485527,
-            duration: 2,
-            // onUpdate: updateCamera,
-        })
+                },
+                x: 0.14525348191734644,
+                y: 0.2546533080975514,
+                z: -5.041940141013417,
+                duration: 2,
+                onUpdate: updateCamera,
+            })
+            .to(camera.target, {
+                scrollTrigger: {
+                    trigger: ".page-section__third",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "top top",
+                    immediateRender: false,
+                },
+                x: 0.8036156172,
+                y: 0.5979497955,
+                z: -0.1227485527,
+                duration: 2,
+                // onUpdate: updateCamera,
+            })
 
     })();
 
