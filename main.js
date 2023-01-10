@@ -227,7 +227,8 @@ setupViewer().then((viewer) => {
     tl.to('body', {
         opacity: 1,
         duration: 1,
-        overflow: "auto",
+        overflowY: "auto",
+        overflowX: "hidden",
     })
     .to('.loader', {
         opacity: 0,
